@@ -16,6 +16,6 @@ vsftpd_pasv_enable: 'YES'
 
 pwd_file: /etc/vsftpd
 
-test_user_is_enable: no
+test_user_is_enable: yes
 test_user: FILL THE USERNAME HERE
 test_user_password: FILL THE PASSWORD HERE
