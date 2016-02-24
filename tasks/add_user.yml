@@ -1,0 +1,13 @@
+---
+- vars_prompt:
+
+  - name: test_user
+    prompt: "Enter username:"
+
+  - name: test_user_password
+    prompt: "Enter the password:"
+    private: yes
+
+- name: add test user of the ftp
+  tags: testuser
+  command: /sbin/vsftpd-user add {{ test_user }} {{ test_user_password }} creates=/etc/vsftpd
