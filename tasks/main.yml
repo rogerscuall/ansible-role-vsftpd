@@ -18,11 +18,6 @@
 - name: copy script the vsftpd-user
   template: src=vsftpd-user.j2 dest=/sbin/vsftpd-user mode=755
 
-- name: add test user of the ftp
-  tags: testuser
-  command: /sbin/vsftpd-user add {{ test_user }} {{ test_user_password }} creates=/etc/vsftpd
-  when: test_user_is_enable
-
 # will be create backup file if already exist
 - name: copy config file of the vsftpd
   template: src=vsftpd.conf.j2 dest=/etc/vsftpd.conf mode=644 backup=yes
