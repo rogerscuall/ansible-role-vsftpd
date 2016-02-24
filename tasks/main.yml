@@ -7,13 +7,10 @@
     - libpam-pwdfile
 
 - name: create directory for user configuration
-  command: mkdir {{ vsftpd_user_config_dir }} creates={{ vsftpd_user_config_dir }}
+  command: file {{ vsftpd_user_config_dir }} state=directory
 
 - name: create directory for key local_root from vsftpd.conf
-  command: mkdir {{ vsftpd_local_root }} creates={{ vsftpd_local_root }}
-
-- name: set permissions for local_root
-  command: chown root:root {{ vsftpd_local_root }}
+  command: file {{ vsftpd_local_root }} state=directory owner=root group=owner
 
 - name: copy file for PAM service
   template: src=vsftpd.pam.j2 dest=/etc/pam.d/vsftpd mode=644 backup=yes
