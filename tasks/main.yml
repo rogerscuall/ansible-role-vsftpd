@@ -5,6 +5,7 @@
   with_items:
     - vsftpd
     - libpam-pwdfile
+  tags: install
 
 - name: create directory for user configuration
   command: file {{ vsftpd_user_config_dir }} state=directory
@@ -23,3 +24,7 @@
   template: src=vsftpd.conf.j2 dest=/etc/vsftpd.conf mode=644 backup=yes
   notify:
     - restart vsftpd
+
+handlers:
+  - name: restart vsftpd
+    service: name=vsftpd state=restarted
